@@ -27,13 +27,19 @@ public class Main {
         boolean game = true;
         int x;
         int y;
-        while (game)
-        {
+        System.out.print("Enter x coord: ");
+        x = in.nextInt();
+        System.out.print("Enter y coord: ");
+        y = in.nextInt();
+        minefield = generate_field(x, y);
+        reveal_num(main, minefield, x, y);
+        print_show(main);
+
+        do {
             System.out.print("Enter x coord: ");
             x = in.nextInt();
             System.out.print("Enter y coord: ");
             y = in.nextInt();
-            minefield = generate_field(x, y);
             if (minefield[x][y])
             {
                 print_show(main);
@@ -54,7 +60,7 @@ public class Main {
 
 
 
-        }
+        } while (game);
 
 
     }
@@ -86,29 +92,29 @@ public class Main {
         return board;
     }
 
-        public static void print_field (boolean[][] array) {
-            //prints the show_board in a visually understanding way
-            System.out.println("    0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29");
-            System.out.println("   -----------------------------------------------------------------------------------------");
+    public static void print_field (boolean[][] array) {
+        //prints the show_board in a visually understanding way
+        System.out.println("    0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29");
+        System.out.println("   -----------------------------------------------------------------------------------------");
 
-            for (int x = 0; x < 15; x++)
+        for (int x = 0; x < 15; x++)
+        {
+            System.out.printf("%3d| ", x);
+            for (int y = 0; y < 30; y++)
             {
-                System.out.printf("%3d| ", x);
-                for (int y = 0; y < 30; y++)
+                if (array[x][y])
                 {
-                    if (array[x][y])
-                    {
-                        System.out.print("X  ");
-                    }
-                    else
-                    {
-                        System.out.print("o  ");
-                    }
+                    System.out.print("X  ");
                 }
-                System.out.println();
-
+                else
+                {
+                    System.out.print("o  ");
+                }
             }
+            System.out.println();
+
         }
+    }
     public static void print_show (int[][] array) {
         //prints bomb pattern (not currently implemented, but useful for bug checking)
         System.out.println("    0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29");
@@ -149,14 +155,14 @@ public class Main {
         */
         if (count == 0)
         {
-        if (y < 29) { if (x < 14) {if(main[x+1][y+1] == 9){reveal_num(main, minefield, x+1, y+1);}}}
-        if (x < 14) {if(main[x+1][y] == 9){reveal_num(main, minefield, x+1, y);}}
-        if (y > 0) { if (x < 14) {if(main[x+1][y-1] == 9){reveal_num(main, minefield, x+1, y-1);}}}
-        if (y > 0)  {if(main[x][y-1] == 9){reveal_num(main, minefield, x, y-1);}}
-        if (y > 0) { if (x > 0) {if(main[x-1][y-1] == 9){reveal_num(main, minefield, x-1, y-1);}}}
-        if (x > 0) {if(main[x-1][y] == 9){reveal_num(main, minefield, x-1, y);}}
-        if (y < 29) { if (x > 0) {if(main[x-1][y+1] == 9){reveal_num(main, minefield, x-1, y+1);}}}
-        if (y < 29) {if(main[x][y+1] == 9){reveal_num(main, minefield, x, y+1);}}
+            if (y < 29) { if (x < 14) {if(main[x+1][y+1] == 9){reveal_num(main, minefield, x+1, y+1);}}}
+            if (x < 14) {if(main[x+1][y] == 9){reveal_num(main, minefield, x+1, y);}}
+            if (y > 0) { if (x < 14) {if(main[x+1][y-1] == 9){reveal_num(main, minefield, x+1, y-1);}}}
+            if (y > 0)  {if(main[x][y-1] == 9){reveal_num(main, minefield, x, y-1);}}
+            if (y > 0) { if (x > 0) {if(main[x-1][y-1] == 9){reveal_num(main, minefield, x-1, y-1);}}}
+            if (x > 0) {if(main[x-1][y] == 9){reveal_num(main, minefield, x-1, y);}}
+            if (y < 29) { if (x > 0) {if(main[x-1][y+1] == 9){reveal_num(main, minefield, x-1, y+1);}}}
+            if (y < 29) {if(main[x][y+1] == 9){reveal_num(main, minefield, x, y+1);}}
         }
     }
 
